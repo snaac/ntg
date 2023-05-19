@@ -21,7 +21,7 @@ task:
             
   setup_scripts_script:
     - set -e
-    - bash sa_script
+    - bash sa_script.sh
 
   sync_script:
     - set -e
