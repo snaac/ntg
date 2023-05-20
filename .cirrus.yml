@@ -21,7 +21,8 @@ task:
             
   setup_scripts_script:
     - set -e
-    - bash sa_script.sh
+    - cd ~/scripts
+    - sudo bash setup/android_build_env.sh
 
   sync_script:
     - set -e
