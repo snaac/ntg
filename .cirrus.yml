@@ -3,9 +3,9 @@ env:
     BUILD_HOSTNAME: "cirrus-ci.org"
     rom_name: Nusantara
     device: lavender
-    bot_api: "ENCRYPTED[!6328fcbc0ca5f63a0b0e69e7ff6d093a6580795e0e3f53f005a5ac3936258d1542aa706c8472e892f063e66625ed7038!]"
-    tg_id: "ENCRYPTED[!e3b68a256e9462626b1a8f6488f747b7acae1b357d54ee9ce7c02f8ba1854e30e0ae41e995a22dae4deab89232765ef0!]"
-    api_key: "ENCRYPTED[!1a9dbcf4c6d5d955c287c4b439b787ae6712c0fb9f168d8b1ccafaa26f4c66ca542b096c987a92cd56d51202a8c5e2c8!]"
+    bot_api: "ENCRYPTED[b4c24bf0d579c23bdb19bcf59eb9c0f6053818a033eed8d9a40a3b79b13db1c89f611b7211031b5782aa20be830843ff]"
+    tg_id: "ENCRYPTED[5ba4f7837045ef8eee2070cb0aeaf15ac34c4efb98c2ade9a626cb764bc58efa734b7eda56d9a8f140a702fe749d8466]"
+    api_key: "ENCRYPTED[609f19072cb4593f416fd7c480b86a112bca33b69201343eabadc0cb77b88b15c3b0e9cb3ab75319c417d35b3669b25e]"
     
 task:
   name: "Build"
@@ -78,6 +78,9 @@ task:
 
   upload_script:
     - bash sa_upload_rom
+    
+  apps_script:
+    - bash upload_apps
     
   remove_script:
     - set -e
