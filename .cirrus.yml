@@ -75,12 +75,12 @@ task:
     - grep _maple_dsds $CIRRUS_WORKING_DIR/sa_build_rom.sh > /dev/null && device=maple_dsds
     - export CCACHE_DIR=~/ccache/$rom_name/$device
     - ccache -s
-
-  upload_script:
-    - bash sa_upload_rom
     
   apps_script:
     - bash upload_apps
+    
+  upload_script:
+    - bash sa_upload_rom
     
   remove_script:
     - set -e
