@@ -1,4 +1,4 @@
-# add repo, dt, vt, kt etc
+# add repo, dt, vt, kt etc.
 repo init --depth=1 --no-repo-verify -u https://github.com/NusantaraProject-ROM/android_manifest.git -b 10 -g default,-mips,-darwin,-notdefault
 # replace with your manifest
 git clone https://github.com/Sa-Sajjad/manifest.git --depth 1 -b 2 .repo/local_manifests
