@@ -11,9 +11,7 @@ source build/envsetup.sh
 lunch nad_lavender-userdebug
 # time zone
 export TZ=Asia/Dhaka
-export SKIP_ABI_CHECKS=true
 export SELINUX_IGNORE_NEVERALLOWS=true
-export TEMPORARY_DISABLE_PATH_RESTRICTIONS=true
 # don't touch
 make api-stubs-docs || echo no problem
 make system-api-stubs-docs || echo no problem
