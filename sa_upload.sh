@@ -136,7 +136,7 @@ curl -s "https://api.telegram.org/bot${bot_api}/sendmessage" -d "text=
 ◦•●◉✿ 🅑🅤🅘🅛🅓 🅢🅤🅒🅒🅔🅔🅓 ✿◉●•◦
       
       
-<code> $res_file_name </code>
+<code>$file_path</code>
 
 
 <a href='https://devuploads.com/$file_code'>Download file</a>
