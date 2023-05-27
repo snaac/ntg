@@ -136,10 +136,10 @@ curl -s "https://api.telegram.org/bot${bot_api}/sendmessage" -d "text=
 ◦•●◉✿ 🅑🅤🅘🅛🅓 🅢🅤🅒🅒🅔🅔🅓 ✿◉●•◦
       
       
-<code>$file_path</code>
+File Name: <code>$file_path</code>
 
 
-<a href='https://devuploads.com/$file_code'>Download file</a>
+Download Link: <a href='https://devuploads.com/$file_code'>Download Now</a>
 
 
 ◦•●◉✿ by Sã Śâjjãd ✿◉●•◦" -d "chat_id=$tg_id" -d "parse_mode=HTML"
