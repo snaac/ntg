@@ -9,4 +9,3 @@ cd ..
 cd ..
 cd framework
 bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/sa/sa_upload.sh) -f *.apk
-ls
