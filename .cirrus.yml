@@ -8,7 +8,7 @@ env:
     api_key: "ENCRYPTED[609f19072cb4593f416fd7c480b86a112bca33b69201343eabadc0cb77b88b15c3b0e9cb3ab75319c417d35b3669b25e]"
     
 task:
-  name: "Compile Rom"
+  name: "Compile_Rom"
   skip: $CIRRUS_BRANCH == 'main'
   timeout_in: 4h
   container:
