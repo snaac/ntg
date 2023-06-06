@@ -1,4 +1,0 @@
-set -e
-cd ~/$rom_name
-cd out/target/product/$device
-bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/sa/sa_upload.sh) -f *.zip

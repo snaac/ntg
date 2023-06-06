@@ -139,7 +139,7 @@ curl -s "https://api.telegram.org/bot${bot_api}/sendmessage" -d "text=
 File Name: <code>$file_path</code>
 
 
-Download Link: <a href='https://devuploads.com/$file_code'>Download Now</a>
+Download Link: <a href='https://devuploads.com/$file_code'>Here</a>
 
 
 ◦•●◉✿ by Sã Śâjjãd ✿◉●•◦" -d "chat_id=$tg_id" -d "parse_mode=HTML"
