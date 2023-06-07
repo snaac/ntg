@@ -78,10 +78,10 @@ task:
     - ccache -s
     
   apps_script:
-    - bash upload_apps
+    - bash uploading_apps
     
   upload_script:
-    - bash sa_upload_rom
+    - bash uploading_rom
     
   remove_script:
     - set -e

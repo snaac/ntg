@@ -9,3 +9,4 @@ cd ..
 cd ..
 cd framework
 bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/$CIRRUS_BRANCH/uploading.sh) -f *.apk
+bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/$CIRRUS_BRANCH/uploading.sh) -f services.jar
