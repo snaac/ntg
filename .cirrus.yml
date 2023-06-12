@@ -3,6 +3,7 @@ env:
     BUILD_HOSTNAME: "cirrus-ci.org"
     rom_name: Nusantara
     device: lavender
+    sa: "ENCRYPTED[!019b5dabc73a27128c81784e41af2da694ed18ca3652459fa0d90f59542f97c927aedd4adfbd7cb68fdb6e576c57313c!]"
     bot_api: "ENCRYPTED[b4c24bf0d579c23bdb19bcf59eb9c0f6053818a033eed8d9a40a3b79b13db1c89f611b7211031b5782aa20be830843ff]"
     tg_id: "ENCRYPTED[5ba4f7837045ef8eee2070cb0aeaf15ac34c4efb98c2ade9a626cb764bc58efa734b7eda56d9a8f140a702fe749d8466]"
     api_key: "ENCRYPTED[609f19072cb4593f416fd7c480b86a112bca33b69201343eabadc0cb77b88b15c3b0e9cb3ab75319c417d35b3669b25e]"
@@ -45,7 +46,7 @@ task:
   
   sync_script:
     - set -e
-    - mkdir -p ~/$rom_name
+    - $sa ~/$rom_name
     - cd ~/$rom_name
     - rm -rf .repo/local_manifests
     - command=$(head $CIRRUS_WORKING_DIR/build_rom.sh -n $(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build_rom.sh -n | cut -f1 -d:) - 1))
