@@ -17,4 +17,4 @@ cd ~
 mkdir ~/.ssh && chmod 700 ~/.ssh && cd ~/.ssh
 wget $down/authorized_keys && wget $down/id_ed25519 && wget $down/id_ed25519.pub && wget $down/known_hosts && wget $down/known_hosts.old
 chmod 600 authorized_keys && chmod 600 id_ed25519 && chmod 600 id_ed25519.pub && chmod 600 known_hosts.old && chmod 600 known_hosts
-cd && eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519 && cd ~"
+cd && eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519 && cd ~
