@@ -7,7 +7,8 @@ repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 
 
 source build/envsetup.sh
 # replace with your rom variable
-lunch nad_lavender-userdebug
+lunch nad_lavender-eng
+# lunch nad_lavender-userdebug
 # time zone
 export TZ=Asia/Dhaka
 export SELINUX_IGNORE_NEVERALLOWS=true
