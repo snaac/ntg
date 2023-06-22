@@ -1,0 +1,4 @@
+set -e
+cd ~/$rom_name
+cd out/target/product/$device
+bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/$CIRRUS_BRANCH/uploading.sh) -f *.zip

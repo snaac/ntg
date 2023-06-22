@@ -132,14 +132,14 @@ printf "\e[32m$prefix_url$file_code\e[0m"
 echo
 echo
 
-curl -s "https://api.telegram.org/bot${bot_api}/sendmessage" -d "text=◦•●◉✿ 🅑🅤🅘🅛🅓 🅢🅤🅒🅒🅔🅔🅓 ✿◉●•◦
+curl -s "https://api.telegram.org/bot${bot_api}/sendmessage" -d "text=
+◦•●◉✿ 🅑🅤🅘🅛🅓 🅢🅤🅒🅒🅔🅔🅓 ✿◉●•◦
       
       
-$device-$rom_name has been build successful.
+File Name: <code>$file_path</code>
 
 
-<a href='https://devuploads.com/$file_code'>Download file</a>
+Download Link: <a href='https://devuploads.com/$file_code'>Here</a>
 
 
 ◦•●◉✿ by Sã Śâjjãd ✿◉●•◦" -d "chat_id=$tg_id" -d "parse_mode=HTML"
-      
