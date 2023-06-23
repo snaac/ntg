@@ -13,7 +13,6 @@ env:
     
 task:
   name: "Compile_Rom"
-  skip: $CIRRUS_BRANCH == 'sa2'
   timeout_in: 4h
   container:
       image: snaxpsycho/snaxpsycho:test
