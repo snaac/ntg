@@ -75,7 +75,7 @@ task:
     - cd ~/$rom_name
     - dlink=$(basename out/target/product/$device/*.zip)
     - file=out/target/product/$device/*.zip
-    - rsync -vhcP -e ssh $file sa-sajjad@frs.sourceforge.net:/home/frs/project/snx/$device/$rom_name/
+    - rsync -vhcP -e ssh $file sa-sajjad@frs.sourceforge.net:/home/frs/project/snx/$device/
     - bash notify_2.sh
 
   remove_script:
