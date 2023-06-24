@@ -27,7 +27,7 @@ task:
     
   started_notify_script:
     - set -e
-    - bash started.sh
+    - bash notify_1.sh
     
   setup_scripts_script:
     - set -e
@@ -66,13 +66,18 @@ task:
     - grep _maple_dsds $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=maple_dsds
     - export CCACHE_DIR=~/ccache/$rom_name/$device
     - ccache -s
-    
+  
   apps_script:
     - bash uploading_apps
-    
+  
   upload_script:
-    - bash uploading_rom
-    
+    - set -e
+    - cd ~/$rom_name
+    - dlink=$(basename out/target/product/$device/*.zip)
+    - file=out/target/product/$device/*.zip
+    - rsync -vhcP -e ssh $file sa-sajjad@frs.sourceforge.net:/home/frs/project/snx/$device/$rom_name/
+    - bash notify_2.sh
+
   remove_script:
     - set -e
     - grep _jasmine_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=jasmine_sprout
