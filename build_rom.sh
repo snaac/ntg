@@ -17,5 +17,5 @@ make system-api-stubs-docs || echo no problem
 make test-api-stubs-docs || echo no problem
 # replace with your rom variable
 mka nad
-# idk what is this
+# idk what is this.
 rclone copy out/target/product/$device/*.zip cirrus:$device -P
