@@ -71,13 +71,8 @@ task:
     - bash uploading_apps
   
   upload_script:
-    - set -e
-    - cd ~/$rom_name
-    - dlink=$(basename out/target/product/$device/*.zip)
-    - file=out/target/product/$device/*.zip
-    - rsync -vhcP -e ssh $file sa-sajjad@frs.sourceforge.net:/home/frs/project/snx/$device/
-    - bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/$CIRRUS_BRANCH/notify_2.sh)
-
+    - bash up_rom
+    
   remove_script:
     - set -e
     - grep _jasmine_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=jasmine_sprout
