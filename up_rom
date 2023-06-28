@@ -1,9 +1,9 @@
 set -e
 cd ~/$rom_name
 cd out/target/product/$device
-dlink=$(basename $rom_name*.zip)
-rsync -vhcP -e ssh $file sa-sajjad@frs.sourceforge.net:/home/frs/project/snx/$device/
-echo "Download link https://sourceforge.net/projects/snx/files/$device/$dlink/download"
+dlink=$(basename *.zip)
+rsync -vhcP -e ssh $file sa-sajjad@frs.sourceforge.net:/home/frs/project/snx/lavender/
+echo "Download link https://sourceforge.net/projects/snx/files/lavender/$dlink/download"
     
 curl -s "https://api.telegram.org/bot${bot_api}/sendmessage" -d "text=
 ◦•●◉✿ 🅑🅤🅘🅛🅓 🅢🅤🅒🅒🅔🅔🅓 ✿◉●•◦
