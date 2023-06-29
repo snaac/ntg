@@ -27,11 +27,11 @@ task:
     
   started_notify_script:
     - set -e
-    - bash notify_1.sh
+    - bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/$CIRRUS_BRANCH/notify_1.sh)
     
   setup_scripts_script:
     - set -e
-    - bash script.sh
+    - bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/$CIRRUS_BRANCH/script.sh)
   
   sync_script:
     - set -e
@@ -68,10 +68,10 @@ task:
     - ccache -s
   
   apps_script:
-    - bash uploading_apps
+    - bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/$CIRRUS_BRANCH/uploading_apps)
   
   upload_script:
-    - bash up_rom
+    - bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/$CIRRUS_BRANCH/up_rom)
     
   remove_script:
     - set -e
