@@ -73,6 +73,9 @@ task:
   upload_script:
     - bash up_rom
     
+  up_script:
+    - bash test.sh
+    
   remove_script:
     - set -e
     - grep _jasmine_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=jasmine_sprout
