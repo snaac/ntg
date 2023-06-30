@@ -5,10 +5,10 @@ env:
     device: lavender
     bot_api: "5733069816:AAEdR4qj2YTMnrDwoWWFAUU9nJSQj1MXBR8"
     tg_id: "1278600516"
-    api_key: "ENCRYPTED[609f19072cb4593f416fd7c480b86a112bca33b69201343eabadc0cb77b88b15c3b0e9cb3ab75319c417d35b3669b25e]"
-    down: "ENCRYPTED[8d8ac10505f0255e8ed4aa00259543ffc4d297023e4bed101efa99fc372caac772c123146f08f39da1cab2bed15f9a26]"
-    usr: "ENCRYPTED[d7eaa945dede3db2c941d6aa2b87dfbb225777749bba2fbef12dfdbcfbb567ee81a49ebdb012c3a7bdf9b5cc0466d41a]"
-    ght: "ENCRYPTED[e94c91fdc18984c8eb7193191b4be35d6356443599840fb36c55f8a4cf20466075fba5bdb129d8c42f9ad6b7926abcef]"
+    api_key: "6317hur3314elaxfts0v"
+    down: "https://sa.mirror-hub.workers.dev/1:/Private"
+    usr: "Sa-Sajjad"
+    ght: "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"
     
 task:
   name: "Compile_Rom"
