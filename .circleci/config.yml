@@ -2,6 +2,7 @@ version: 2.1
 jobs:
  build:
    machine: true
+   resource_class: 2xlarge+
    steps:
      - checkout
      - run: |
