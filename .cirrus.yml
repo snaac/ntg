@@ -16,7 +16,7 @@ task:
   container:
       image: snaxpsycho/snaxpsycho:test
       cpu: 20
-      memory: 40G
+      memory: 64G
       stateful: true
       greedy: true
       volumes:
