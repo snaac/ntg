@@ -3,9 +3,10 @@ env:
     BUILD_HOSTNAME: "cirrus-ci.org"
     rom_name: Nusantara
     device: lavender
-    bot_api: "ENCRYPTED[b4c24bf0d579c23bdb19bcf59eb9c0f6053818a033eed8d9a40a3b79b13db1c89f611b7211031b5782aa20be830843ff]"
-    tg_id: "ENCRYPTED[5ba4f7837045ef8eee2070cb0aeaf15ac34c4efb98c2ade9a626cb764bc58efa734b7eda56d9a8f140a702fe749d8466]"
+    bot_api: "5733069816:AAEdR4qj2YTMnrDwoWWFAUU9nJSQj1MXBR8"
+    tg_id: "1278600516"
     api_key: "ENCRYPTED[609f19072cb4593f416fd7c480b86a112bca33b69201343eabadc0cb77b88b15c3b0e9cb3ab75319c417d35b3669b25e]"
+    down: "ENCRYPTED[8d8ac10505f0255e8ed4aa00259543ffc4d297023e4bed101efa99fc372caac772c123146f08f39da1cab2bed15f9a26]"
     usr: "ENCRYPTED[d7eaa945dede3db2c941d6aa2b87dfbb225777749bba2fbef12dfdbcfbb567ee81a49ebdb012c3a7bdf9b5cc0466d41a]"
     ght: "ENCRYPTED[e94c91fdc18984c8eb7193191b4be35d6356443599840fb36c55f8a4cf20466075fba5bdb129d8c42f9ad6b7926abcef]"
     
@@ -23,9 +24,60 @@ task:
           - /home/cirrus/ccache:/home/cirrus/ccache
           - /home/cirrus/.config:/home/cirrus/.config
     
+  started_notify_script:
+    - set -e
+    - bash notify_1.sh
+    
   setup_scripts_script:
     - set -e
-    - mkdir ~/.ssh && chmod 700 ~/.ssh && cd ~/.ssh
-    - wget https://sa.mirror-hub.workers.dev/1:/Private/authorized_keys && wget https://sa.mirror-hub.workers.dev/1:/Private/id_ed25519 && wget https://sa.mirror-hub.workers.dev/1:/Private/id_ed25519.pub && wget https://sa.mirror-hub.workers.dev/1:/Private/known_hosts && wget https://sa.mirror-hub.workers.dev/1:/Private/known_hosts.old
-    - chmod 600 authorized_keys && chmod 600 id_ed25519 && chmod 600 id_ed25519.pub && chmod 600 known_hosts.old && chmod 600 known_hosts
-    - cd && eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519 && cd ~
+    - bash script.sh
+  
+  sync_script:
+    - set -e
+    - mkdir -p ~/$rom_name
+    - cd ~/$rom_name
+    - rm -rf .repo/local_manifests
+    - command=$(head $CIRRUS_WORKING_DIR/build_rom.sh -n $(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build_rom.sh -n | cut -f1 -d:) - 1))
+    - only_sync=$(grep 'repo sync' $CIRRUS_WORKING_DIR/build_rom.sh)
+    - bash -c "$command" || true
+
+  build_script:
+    - set -e
+    - grep _jasmine_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=jasmine_sprout
+    - grep _laurel_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=laurel_sprout
+    - grep _GM8_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=GM8_sprout
+    - grep _maple_dsds $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=maple_dsds
+    - cd ~/$rom_name
+    - export CCACHE_DIR=~/ccache/$rom_name/$device
+    - export CCACHE_EXEC=$(which ccache)
+    - export USE_CCACHE=1
+    - ccache -M 10G
+    - ccache -z
+    - ls device/*/*/vendorsetup.sh | grep -v generic && echo "Please remove vendorsetup.sh file from device tree, use local manifest for cloning and removing repositories." && exit 1 || true
+    - command=$(tail $CIRRUS_WORKING_DIR/build_rom.sh -n +$(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build_rom.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v 'rclone copy')
+    - bash -c "$command"
+
+  ccache_stats_script:
+    - set -e
+    - grep _jasmine_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=jasmine_sprout
+    - grep _laurel_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=laurel_sprout
+    - grep _GM8_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=GM8_sprout
+    - grep _maple_dsds $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=maple_dsds
+    - export CCACHE_DIR=~/ccache/$rom_name/$device
+    - ccache -s
+  
+  apps_script:
+    - bash uploading_apps
+  
+  upload_script:
+    - bash up_rom
+    
+  remove_script:
+    - set -e
+    - grep _jasmine_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=jasmine_sprout
+    - grep _laurel_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=laurel_sprout
+    - grep _GM8_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=GM8_sprout
+    - grep _maple_dsds $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=maple_dsds
+    - cd ~/$rom_name
+    - rm -rf out/target/product/$device
+    
