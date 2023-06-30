@@ -15,8 +15,8 @@ task:
   timeout_in: 4h
   container:
       image: snaxpsycho/snaxpsycho:test
-      cpu: 20
-      memory: 64G
+      cpu: 24
+      memory: 120G
       stateful: true
       greedy: true
       volumes:
