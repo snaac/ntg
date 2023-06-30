@@ -2,9 +2,6 @@ version: 2.1
 jobs:
  build:
    machine: true
-   docker:
-      - image: snaxpsycho/snaxpsycho:test
-   resource_class: xlarge
    steps:
      - checkout
      - run: |
