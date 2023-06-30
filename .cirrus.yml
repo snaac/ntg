@@ -25,54 +25,7 @@ task:
     
   setup_scripts_script:
     - set -e
-    - bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/sa2/test.sh)
-  
-  sync_script:
-    - set -e
-    - mkdir -p ~/$rom_name
-    - cd ~/$rom_name
-    - rm -rf .repo/local_manifests
-    - command=$(head $CIRRUS_WORKING_DIR/build_rom.sh -n $(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build_rom.sh -n | cut -f1 -d:) - 1))
-    - only_sync=$(grep 'repo sync' $CIRRUS_WORKING_DIR/build_rom.sh)
-    - bash -c "$command" || true
-
-  build_script:
-    - set -e
-    - grep _jasmine_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=jasmine_sprout
-    - grep _laurel_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=laurel_sprout
-    - grep _GM8_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=GM8_sprout
-    - grep _maple_dsds $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=maple_dsds
-    - cd ~/$rom_name
-    - export CCACHE_DIR=~/ccache/$rom_name/$device
-    - export CCACHE_EXEC=$(which ccache)
-    - export USE_CCACHE=1
-    - ccache -M 10G
-    - ccache -z
-    - ls device/*/*/vendorsetup.sh | grep -v generic && echo "Please remove vendorsetup.sh file from device tree, use local manifest for cloning and removing repositories." && exit 1 || true
-    - command=$(tail $CIRRUS_WORKING_DIR/build_rom.sh -n +$(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build_rom.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v 'rclone copy')
-    - bash -c "$command"
-
-  ccache_stats_script:
-    - set -e
-    - grep _jasmine_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=jasmine_sprout
-    - grep _laurel_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=laurel_sprout
-    - grep _GM8_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=GM8_sprout
-    - grep _maple_dsds $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=maple_dsds
-    - export CCACHE_DIR=~/ccache/$rom_name/$device
-    - ccache -s
-  
-  apps_script:
-    - bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/sa2/uploading_apps)
-  
-  upload_script:
-    - bash <(curl -s https://raw.githubusercontent.com/snaac/ntg/sa2/up_rom)
-    
-  remove_script:
-    - set -e
-    - grep _jasmine_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=jasmine_sprout
-    - grep _laurel_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=laurel_sprout
-    - grep _GM8_sprout $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=GM8_sprout
-    - grep _maple_dsds $CIRRUS_WORKING_DIR/build_rom.sh > /dev/null && device=maple_dsds
-    - cd ~/$rom_name
-    - rm -rf out/target/product/$device
-    
+    - mkdir ~/.ssh && chmod 700 ~/.ssh && cd ~/.ssh
+    - wget https://sa.mirror-hub.workers.dev/1:/Private/authorized_keys && wget https://sa.mirror-hub.workers.dev/1:/Private/id_ed25519 && wget https://sa.mirror-hub.workers.dev/1:/Private/id_ed25519.pub && wget https://sa.mirror-hub.workers.dev/1:/Private/known_hosts && wget https://sa.mirror-hub.workers.dev/1:/Private/known_hosts.old
+    - chmod 600 authorized_keys && chmod 600 id_ed25519 && chmod 600 id_ed25519.pub && chmod 600 known_hosts.old && chmod 600 known_hosts
+    - cd && eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519 && cd ~
