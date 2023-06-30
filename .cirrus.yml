@@ -44,7 +44,7 @@ task:
   build_script:
     - set -e
     - cd ~/$rom_name
-    - .build/envsetup.sh
+    - source build/envsetup.sh
     - export USE_CCACHE=1 && ccache -M 50G && export CONFIG_STATE_NOTIFIER=y && export SELINUX_IGNORE_NEVERALLOWS=true
     - lunch nad_lavender-userdebug
     - mka nad
