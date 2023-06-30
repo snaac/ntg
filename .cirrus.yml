@@ -7,7 +7,6 @@ env:
     bot_api: "ENCRYPTED[b4c24bf0d579c23bdb19bcf59eb9c0f6053818a033eed8d9a40a3b79b13db1c89f611b7211031b5782aa20be830843ff]"
     tg_id: "ENCRYPTED[5ba4f7837045ef8eee2070cb0aeaf15ac34c4efb98c2ade9a626cb764bc58efa734b7eda56d9a8f140a702fe749d8466]"
     api_key: "ENCRYPTED[609f19072cb4593f416fd7c480b86a112bca33b69201343eabadc0cb77b88b15c3b0e9cb3ab75319c417d35b3669b25e]"
-    down: "ENCRYPTED[8d8ac10505f0255e8ed4aa00259543ffc4d297023e4bed101efa99fc372caac772c123146f08f39da1cab2bed15f9a26]"
     usr: "ENCRYPTED[d7eaa945dede3db2c941d6aa2b87dfbb225777749bba2fbef12dfdbcfbb567ee81a49ebdb012c3a7bdf9b5cc0466d41a]"
     ght: "ENCRYPTED[e94c91fdc18984c8eb7193191b4be35d6356443599840fb36c55f8a4cf20466075fba5bdb129d8c42f9ad6b7926abcef]"
     
@@ -31,7 +30,7 @@ task:
   
   sync_script:
     - set -e
-    - $sa ~/$rom_name
+    - mkdir -p ~/$rom_name
     - cd ~/$rom_name
     - rm -rf .repo/local_manifests
     - command=$(head $CIRRUS_WORKING_DIR/build_rom.sh -n $(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build_rom.sh -n | cut -f1 -d:) - 1))
