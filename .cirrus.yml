@@ -36,10 +36,12 @@ task:
     - set -e
     - mkdir -p ~/$rom_name
     - cd ~/$rom_name
-    - rm -rf .repo/local_manifests
-    - command=$(head $CIRRUS_WORKING_DIR/build_rom.sh -n $(expr $(grep 'build/envsetup.sh' $CIRRUS_WORKING_DIR/build_rom.sh -n | cut -f1 -d:) - 1))
-    - only_sync=$(grep 'repo sync' $CIRRUS_WORKING_DIR/build_rom.sh)
-    - bash -c "$command" || true
+    - repo init --depth=1 --no-repo-verify -u https://Sa-Sajjad:$ght@github.com/S-A-build/android_manifest_nusa.git -b Sa-Sajjad-patch-1 -g default,-mips,-darwin,-notdefault
+    - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
+    - git clone https://github.com/Sa-Sajjad/device_xiaomi_lavender -b hmp device/xiaomi/lavender
+    - git clone https://github.com/Sa-Sajjad/vendor_xiaomi_lavender -b 10 vendor/xiaomi/lavender
+    - git clone https://github.com/Sa-Sajjad/kernel_xiaomi_lavender -b hmp kernel/xiaomi/lavender
+
 
   build_script:
     - set -e
