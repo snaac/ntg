@@ -1,3 +1,4 @@
+git clone https://github.com/akhilnarang/scripts ~/scripts
 cd ~/scripts
 sudo bash setup/android_build_env.sh
 cd ~
